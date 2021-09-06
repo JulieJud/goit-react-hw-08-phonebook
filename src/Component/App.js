@@ -29,6 +29,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
+        <title>Phonebook</title>
         <CotactsForm onSubmit={this.addName} />
         <ContactsList contacts={this.state.contacts} />
       </div>

@@ -25,12 +25,12 @@ export default class ContactsForm extends Component{
     this.setState({ name: '', number: '' });
   };
     
-  
+
     render() {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <label>
+                    <label htmlFor={this.nameId}>
                         Name
                         
                         <input
@@ -45,7 +45,20 @@ export default class ContactsForm extends Component{
        
                     />
                 
-                    </label>
+              </label>
+                      <label htmlFor={this.telId}>Telephone
+                         <input
+                              type="tel"
+                              name="number"
+                              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+                              title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
+                              required
+                              id={this.telId}
+                              value={this.state.number}
+                              onChange={this.handleInputChange}
+                      />
+              </label>
+              
                       <button type="submit">Add to contacts</button>
                     
         </form>
