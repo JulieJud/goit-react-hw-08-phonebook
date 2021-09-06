@@ -17,6 +17,14 @@ export default class App extends Component {
   };
 
   addName = (name, number) => {
+    if (
+      this.state.contacts.find(
+        contact => contact.name.toLowerCase() === name.toLowerCase(),
+      )
+    ) {
+      alert(`${name} is already in contacts!`);
+      return;
+    }
     const newPerson = {
       id: uuidv4(),
       name,
