@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 import CotactsForm from './Contacts/ContactsForm';
 import ContactsList from './Contacts/ContactsList';
+import Filter from './Filter/Filter';
 
 export default class App extends Component {
   state = {
@@ -26,14 +27,23 @@ export default class App extends Component {
     }));
   };
 
+  changeFilter = e => {
+    this.setState({ filter: e.currentTarget.value });
+  };
+
   render() {
+    const normalizedFilter = this.state.filter.toLocaleLowerCase();
+    const visibleContacts = this.state.contacts.filter(contact =>
+      contact.name.toLocaleLowerCase().includes(normalizedFilter),
+    );
     return (
       <div>
         <h1>Phonebook</h1>
         <CotactsForm onSubmit={this.addName} />
         <h2>Contacts</h2>
+        <Filter value={this.state.filter} onChange={this.changeFilter} />
 
-        <ContactsList contacts={this.state.contacts} />
+        <ContactsList contacts={visibleContacts} />
       </div>
     );
   }
