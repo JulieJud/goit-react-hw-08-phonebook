@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './App.css';
-import CotactsForm from './Contacts/ContactsForm.jsx';
+import CotactsForm from './Contacts/ContactsForm';
 import ContactsList from './Contacts/ContactsList';
 
 export default class App extends Component {
@@ -29,8 +29,10 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <title>Phonebook</title>
+        <h1>Phonebook</h1>
         <CotactsForm onSubmit={this.addName} />
+        <h2>Contacts</h2>
+
         <ContactsList contacts={this.state.contacts} />
       </div>
     );

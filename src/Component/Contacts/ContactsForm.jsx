@@ -30,7 +30,7 @@ export default class ContactsForm extends Component{
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <label htmlFor={this.nameId}>
+                    <label >
                         Name
                         
                         <input
@@ -46,7 +46,7 @@ export default class ContactsForm extends Component{
                     />
                 
               </label>
-                      <label htmlFor={this.telId}>Telephone
+                      <label >Telephone
                          <input
                               type="tel"
                               name="number"
