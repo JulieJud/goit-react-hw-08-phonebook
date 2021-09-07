@@ -4,6 +4,7 @@ import './App.css';
 import CotactsForm from './Contacts/ContactsForm';
 import ContactsList from './Contacts/ContactsList';
 import Filter from './Filter/Filter';
+import { Title, Container } from './Contacts/Title.styled';
 
 export default class App extends Component {
   state = {
@@ -56,17 +57,17 @@ export default class App extends Component {
     const visibleContacts = this.getVisibleContacts();
 
     return (
-      <div>
-        <h1>Phonebook</h1>
+      <Container>
+        <Title>Phonebook</Title>
         <CotactsForm onSubmit={this.addName} />
-        <h2>Contacts</h2>
+        <Title>Contacts</Title>
         <Filter value={this.state.filter} onChange={this.changeFilter} />
 
         <ContactsList
           contacts={visibleContacts}
           onDeleteContacts={this.deleteContacts}
         />
-      </div>
+      </Container>
     );
   }
 }
