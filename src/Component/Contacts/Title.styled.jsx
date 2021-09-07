@@ -8,7 +8,7 @@ export const Title = styled.h2`
   color: green;
   text-transform: uppercase;
   text-align: center;
-  font-size: 24px;
+  font-size: 20px;
 `;
 
 export const Container = styled.div`
