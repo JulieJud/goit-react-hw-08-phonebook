@@ -1,8 +1,8 @@
 {
-  "name": "goit-react-hw-02-phonebook",
+  "name": "goit-react-hw-03-phonebook",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://JulieJud.github.io/goit-react-hw-02-phonebook",
+  "homepage": "https://JulieJud.github.io/goit-react-hw-03-phonebook",
   "dependencies": {
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
@@ -52,5 +52,17 @@
   "lint-staged": {
     "*.js": "eslint --cache --fix",
     "*.{js,css,md}": "prettier --write"
+  },
+  "description": "This project was bootstrapped with\r [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JulieJud/goit-react-hw-03-phonebook.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JulieJud/goit-react-hw-03-phonebook/issues"
   }
 }
