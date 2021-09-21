@@ -9,13 +9,13 @@ export const Button = styled.button`
   box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
   text-transform: uppercase;
   font-size: 12px;
-  
+
   background-color: grey;
-  color:white;
+  color: white;
 `;
 
 export const List = styled.ul`
-padding:0;
+  padding: 0;
 `;
 
 export const Name = styled.span`

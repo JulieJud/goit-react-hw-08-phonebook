@@ -12,5 +12,5 @@ export const Title = styled.h2`
 `;
 
 export const Container = styled.div`
-margin:10px;
+  margin: 10px;
 `;

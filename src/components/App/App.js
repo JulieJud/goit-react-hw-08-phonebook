@@ -1,10 +1,9 @@
 import { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import './App.css';
-import CotactsForm from './Contacts/ContactsForm';
-import ContactsList from './Contacts/ContactsList';
-import Filter from './Filter/Filter';
-import { Title, Container } from './Contacts/Title.styled';
+import CotactsForm from '../contacts/ContactsForm/ContactsForm';
+import ContactsList from '../contacts/ContactsList/ContactsList';
+import Filter from '../Filter/Filter';
+import { Title, Container } from './App.styled';
 
 export default class App extends Component {
   state = {
@@ -16,6 +15,7 @@ export default class App extends Component {
     ],
     filter: '',
   };
+
   componentDidMount() {
     const contacts = localStorage.getItem('contacts');
     const parsedContacts = JSON.parse(contacts);
@@ -30,19 +30,21 @@ export default class App extends Component {
   }
 
   addName = (name, number) => {
-    if (
-      this.state.contacts.find(
-        contact => contact.name.toLowerCase() === name.toLowerCase(),
-      )
-    ) {
+    const condition = this.state.contacts.find(
+      contact => contact.name.toLowerCase() === name.toLowerCase(),
+    );
+
+    if (condition) {
       alert(`${name} is already in contacts!`);
       return;
     }
+
     const newPerson = {
       id: uuidv4(),
       name,
       number,
     };
+
     this.setState(({ contacts }) => ({
       contacts: [newPerson, ...contacts],
     }));
@@ -53,9 +55,11 @@ export default class App extends Component {
       contacts: prevState.contacts.filter(contact => contact.id !== contactId),
     }));
   };
+
   changeFilter = e => {
     this.setState({ filter: e.currentTarget.value });
   };
+
   getVisibleContacts = () => {
     const { filter, contacts } = this.state;
     const normalizedFilter = filter.toLowerCase();
@@ -74,7 +78,6 @@ export default class App extends Component {
         <CotactsForm onSubmit={this.addName} />
         <Title>Contacts</Title>
         <Filter value={this.state.filter} onChange={this.changeFilter} />
-
         <ContactsList
           contacts={visibleContacts}
           onDeleteContacts={this.deleteContacts}
