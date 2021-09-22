@@ -9,6 +9,7 @@ export const Button = styled.button`
   box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
   text-transform: uppercase;
   font-size: 12px;
+  cursor: grab;
 
   background-color: grey;
   color: white;
