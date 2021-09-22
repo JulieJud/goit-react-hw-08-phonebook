@@ -16,9 +16,8 @@ export default function App() {
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
-    const contacts = localStorage.getItem('contacts');
-    const parsedContacts = JSON.parse(contacts);
-    setContacts(parsedContacts);
+    const currentContacts = JSON.parse(localStorage.getItem('contacts')) ?? '';
+    currentContacts && setContacts(currentContacts);
   }, []);
 
   useEffect(() => {
@@ -26,14 +25,15 @@ export default function App() {
   }, [contacts]);
 
   const addName = (name, number) => {
-    if (
-      contacts.find(
-        contact => contact.name.toLowerCase() === name.toLowerCase(),
-      )
-    ) {
-      alert(`${name} is already in contacts`);
+    const condition = contacts.find(
+      contact => contact.name.toLowerCase() === name.toLowerCase(),
+    );
+
+    if (condition) {
+      alert(`${name} is already in contacts!`);
       return;
     }
+
     const newContact = {
       id: uuidv4(),
       name,
