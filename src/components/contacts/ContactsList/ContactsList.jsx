@@ -16,9 +16,18 @@ const ContactsList = ({ contacts, onDeleteContacts }) => (
   </List>
 );
 
-const mapStateToProps = state => ({
-  contacts: state.phonebook.items,
-});
+const mapStateToProps = state => {
+  const { filter, items } = state.phonebook;
+  const normalizedFilter = filter.toLowerCase();
+
+  const visibleContacts = items.filter(contact =>
+    contact.name.toLowerCase().includes(normalizedFilter),
+  );
+
+  return {
+    contacts: visibleContacts,
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   onDeleteContacts: id => dispatch(phonebookActions.deleteName(id)),

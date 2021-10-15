@@ -1,4 +1,5 @@
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import phonebookActions from '../../redux/phonebook/phonebook-actions';
 import { Label, Input } from './Filter.styled';
 
 const Filter = ({ value, onChange }) => {
@@ -9,10 +10,12 @@ const Filter = ({ value, onChange }) => {
     </Label>
   );
 };
+const mapStateToProps = state => ({
+  value: state.phonebook.filter,
+});
 
-export default Filter;
+const mapDispatchToProps = dispatch => ({
+  onChange: e => dispatch(phonebookActions.changeFilter(e.target.value)),
+});
 
-Filter.propTypes = {
-  value: PropTypes.string,
-  onChange: PropTypes.func,
-};
+export default connect(mapStateToProps, mapDispatchToProps)(Filter);
