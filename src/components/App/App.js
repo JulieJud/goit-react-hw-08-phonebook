@@ -24,23 +24,23 @@ export default function App() {
     localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
 
-  const addName = (name, number) => {
-    const condition = contacts.find(
-      contact => contact.name.toLowerCase() === name.toLowerCase(),
-    );
+  // const addName = (name, number) => {
+  //  const condition = contacts.find(
+  //    contact => contact.name.toLowerCase() === name.toLowerCase(),
+  //  );
 
-    if (condition) {
-      alert(`${name} is already in contacts!`);
-      return;
-    }
+  // if (condition) {
+  //   alert(`${name} is already in contacts!`);
+  //   return;
+  // }
 
-    // const newContact = {
-    //  id: uuidv4(),
-    // name,
-    //   number,
-    //  };
-    // setContacts(prevState => [newContact, ...prevState]);
-  };
+  // const newContact = {
+  //  id: uuidv4(),
+  // name,
+  //   number,
+  //  };
+  // setContacts(prevState => [newContact, ...prevState]);
+  //};
 
   //  const deleteContacts = contactId => {
   // setContacts(prevState =>
@@ -48,29 +48,29 @@ export default function App() {
   //  );
   // };
 
-  const changeFilter = e => {
-    setFilter(e.currentTarget.value);
-  };
+  //const changeFilter = e => {
+  //  setFilter(e.currentTarget.value);
+  //};
 
-  const getVisibleContacts = () => {
-    const normalizedFilter = filter.toLowerCase();
+  // const getVisibleContacts = () => {
+  //  const normalizedFilter = filter.toLowerCase();
 
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizedFilter),
-    );
-  };
+  //  return contacts.filter(contact =>
+  //    contact.name.toLowerCase().includes(normalizedFilter),
+  // );
+  //};
 
-  const visibleContacts = getVisibleContacts();
+  // const visibleContacts = getVisibleContacts();
 
   return (
     <Container>
       <Title>Phonebook</Title>
       <CotactsForm />
       <Title>Contacts</Title>
-      <Filter value={filter} onChange={changeFilter} />
+
       <ContactsList
-        contacts={visibleContacts}
-        //onDeleteContacts={deleteContacts}
+      //contacts={visibleContacts}
+      //onDeleteContacts={deleteContacts}
       />
     </Container>
   );

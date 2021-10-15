@@ -10,9 +10,9 @@ const addName = (name, number) => ({
   },
 });
 
-const deleteContacts = contactId => ({
+const deleteName = contactId => ({
   type: types.DELETE,
   payload: contactId,
 });
 
-export default { addName, deleteContacts };
+export default { addName, deleteName };
