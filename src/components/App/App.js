@@ -34,19 +34,19 @@ export default function App() {
       return;
     }
 
-    const newContact = {
-      id: uuidv4(),
-      name,
-      number,
-    };
-    setContacts(prevState => [newContact, ...prevState]);
+    // const newContact = {
+    //  id: uuidv4(),
+    // name,
+    //   number,
+    //  };
+    // setContacts(prevState => [newContact, ...prevState]);
   };
 
-  const deleteContacts = contactId => {
-    setContacts(prevState =>
-      prevState.filter(contact => contact.id !== contactId),
-    );
-  };
+  //  const deleteContacts = contactId => {
+  // setContacts(prevState =>
+  //   prevState.filter(contact => contact.id !== contactId),
+  //  );
+  // };
 
   const changeFilter = e => {
     setFilter(e.currentTarget.value);
@@ -65,12 +65,12 @@ export default function App() {
   return (
     <Container>
       <Title>Phonebook</Title>
-      <CotactsForm onSubmit={addName} />
+      <CotactsForm />
       <Title>Contacts</Title>
       <Filter value={filter} onChange={changeFilter} />
       <ContactsList
         contacts={visibleContacts}
-        onDeleteContacts={deleteContacts}
+        //onDeleteContacts={deleteContacts}
       />
     </Container>
   );

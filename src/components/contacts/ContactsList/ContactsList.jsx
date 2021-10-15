@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
 import { Button, List, Name, Item } from './ContactsList.styled';
 
 const ContactsList = ({ contacts, onDeleteContacts }) => (
