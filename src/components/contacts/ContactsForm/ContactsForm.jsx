@@ -1,17 +1,20 @@
 import { useState } from 'react';
-import { connect } from 'react-redux';
-import phonebookActions from '../../../redux/phonebook/phonebook-actions';
 import { v4 as uuidv4 } from 'uuid';
+import { useDispatch } from 'react-redux';
+import { newContact } from '../../../redux/phonebook/phonebook-actions';
 import { Form, Label, Input, Button } from './ContactsForm.styled';
 
-function ContactsForm({ onSubmit }) {
+export function ContactForm() {
+  const dispatch = useDispatch();
+  const onSubmit = (name, number) => dispatch(newContact(name, number));
+
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
   const nameId = uuidv4();
   const telId = uuidv4();
 
-  const handleInputChange = e => {
+  const handleChange = e => {
     const { name, value } = e.target;
     switch (name) {
       case 'name':
@@ -25,49 +28,45 @@ function ContactsForm({ onSubmit }) {
     }
   };
 
-  const handleSubmit = event => {
-    event.preventDefault();
+  const handleSubmit = e => {
+    e.preventDefault();
     onSubmit(name, number);
     setName('');
     setNumber('');
   };
 
   return (
-    <div>
-      <Form onSubmit={handleSubmit}>
-        <Label htmlFor={nameId}>
-          Name
-          <Input
-            type="text"
-            name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-            required
-            id={nameId}
-            value={name}
-            onChange={handleInputChange}
-          />
-        </Label>
-        <Label htmlFor={telId}>
-          Telephone
-          <Input
-            type="tel"
-            name="number"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
-            required
-            id={telId}
-            value={number}
-            onChange={handleInputChange}
-          />
-        </Label>
+    <Form onSubmit={handleSubmit}>
+      <Label htmlFor={nameId}>
+        Name
+        <Input
+          type="text"
+          name="name"
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+          required
+          id={nameId}
+          value={name}
+          onChange={handleChange}
+        />
+      </Label>
 
-        <Button type="submit">Add to contacts</Button>
-      </Form>
-    </div>
+      <Label htmlFor={telId}>
+        Telephone
+        <Input
+          type="tel"
+          name="number"
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
+          required
+          id={telId}
+          value={number}
+          onChange={handleChange}
+        />
+      </Label>
+      <Button type="submit">Add to contacts</Button>
+    </Form>
   );
 }
-const mapDispatchToProps = dispatch => ({
-  onSubmit: data => dispatch(phonebookActions.addName(data)),
-});
-export default connect(null, mapDispatchToProps)(ContactsForm);
+
+export default ContactForm;

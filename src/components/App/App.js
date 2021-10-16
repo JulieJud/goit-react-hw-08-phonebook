@@ -1,16 +1,16 @@
-import CotactsForm from '../contacts/ContactsForm/ContactsForm';
-import ContactsList from '../contacts/ContactsList/ContactsList';
-import Filter from '../Filter/Filter';
-import { Title, Container } from './App.styled';
+import ContactList from '../contacts/ContactsList/ContactsList.jsx';
+import ContactForm from '../contacts/ContactsForm/ContactsForm.jsx';
+import Filter from '../Filter/Filter.jsx';
+import { Title } from './App.styled';
 
 export default function App() {
   return (
-    <Container>
+    <div>
       <Title>Phonebook</Title>
-      <CotactsForm />
+      <ContactForm />
       <Title>Contacts</Title>
       <Filter />
-      <ContactsList />
-    </Container>
+      <ContactList />
+    </div>
   );
 }

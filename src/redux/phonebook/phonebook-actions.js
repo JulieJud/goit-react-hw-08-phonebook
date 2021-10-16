@@ -1,8 +1,7 @@
-import { v4 as uuidv4 } from 'uuid';
 import { createAction } from '@reduxjs/toolkit';
-import types from './phonebook-types';
+import { v4 as uuidv4 } from 'uuid';
 
-export const addName = createAction(types.ADD, (name, number) => ({
+export const newContact = createAction('phonebook/add', (name, number) => ({
   payload: {
     id: uuidv4(),
     name,
@@ -10,8 +9,6 @@ export const addName = createAction(types.ADD, (name, number) => ({
   },
 }));
 
-export const deleteName = createAction(types.DELETE);
+export const deleteContacts = createAction('phonebook/delete');
 
-export const changeFilter = createAction(types.CHANGE);
-
-export default { addName, deleteName, changeFilter };
+export const changeFilter = createAction('phonebook/changeFilter');

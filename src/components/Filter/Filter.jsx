@@ -1,21 +1,29 @@
-import { connect } from 'react-redux';
-import phonebookActions from '../../redux/phonebook/phonebook-actions';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
+import { getFilter } from '../../redux/phonebook/phonebook-date';
+import { changeFilter } from '../../redux/phonebook/phonebook-actions';
 import { Label, Input } from './Filter.styled';
 
-const Filter = ({ value, onChange }) => {
+const Filter = () => {
+  const value = useSelector(getFilter);
+  const dispatch = useDispatch();
+
+  const onChange = event => dispatch(changeFilter(event.target.value));
+  const onBlur = () => dispatch(changeFilter(''));
+
   return (
     <Label>
       Find contacts by name
-      <Input type="text" value={value} onChange={onChange} />
+      <Input type="text" value={value} onChange={onChange} onBlur={onBlur} />
     </Label>
   );
 };
-const mapStateToProps = state => ({
-  value: state.phonebook.filter,
-});
 
-const mapDispatchToProps = dispatch => ({
-  onChange: e => dispatch(phonebookActions.changeFilter(e.target.value)),
-});
+export default Filter;
 
-export default connect(mapStateToProps, mapDispatchToProps)(Filter);
+Filter.propTypes = {
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  onBlur: PropTypes.func,
+};
