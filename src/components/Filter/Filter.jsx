@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import { getFilter } from '../../redux/phonebook/phonebook-date';
+import { getFilter } from '../../redux/phonebook/phonebook-selectors';
 import { changeFilter } from '../../redux/phonebook/phonebook-actions';
 import { Label, Input } from './Filter.styled';
 
