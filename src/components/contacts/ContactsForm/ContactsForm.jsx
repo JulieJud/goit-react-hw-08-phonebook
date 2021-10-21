@@ -5,11 +5,12 @@ import { newContact } from '../../../redux/phonebook/phonebook-actions';
 import { Form, Label, Input, Button } from './ContactsForm.styled';
 
 export function ContactForm() {
-  const dispatch = useDispatch();
-  const onSubmit = (name, number) => dispatch(newContact(name, number));
-
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+
+  const dispatch = useDispatch();
+
+  const onSubmit = (name, number) => dispatch(newContact({ name, number }));
 
   const nameId = uuidv4();
   const telId = uuidv4();

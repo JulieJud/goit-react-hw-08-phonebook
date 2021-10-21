@@ -1,11 +1,10 @@
 import { createAction } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 
-export const newContact = createAction('phonebook/add', (name, number) => ({
+export const newContact = createAction('phonebook/add', data => ({
   payload: {
     id: uuidv4(),
-    name,
-    number,
+    ...data,
   },
 }));
 
