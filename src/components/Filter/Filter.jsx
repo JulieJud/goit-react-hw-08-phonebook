@@ -9,18 +9,13 @@ const Filter = () => {
   const value = useSelector(getFilter);
   const dispatch = useDispatch();
 
-  const onChangeHandler = event => dispatch(changeFilter(event.target.value));
-  const onBlurHandler = () => dispatch(changeFilter(''));
+  const onChange = event => dispatch(changeFilter(event.target.value));
+  const onBlur = () => dispatch(changeFilter(''));
 
   return (
     <Label>
       Find contacts by name
-      <Input
-        type="text"
-        value={value}
-        onChange={onChangeHandler}
-        onBlur={onBlurHandler}
-      />
+      <Input type="text" value={value} onChange={onChange} onBlur={onBlur} />
     </Label>
   );
 };

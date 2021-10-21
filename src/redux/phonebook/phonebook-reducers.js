@@ -5,7 +5,7 @@ import {
   fetchContactsAction,
   addContactAction,
   deleteContactAction,
-} from './phonebook-operation';
+} from './phonebook-operations';
 
 const entities = createReducer([], {
   [fetchContactsAction.fulfilled]: (_state, action) => action.payload,
