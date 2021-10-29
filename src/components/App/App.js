@@ -2,12 +2,12 @@ import { useEffect, lazy, Suspense } from 'react';
 import { Switch } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from 'react-loader-spinner';
-import PrivateRoute from '../PrivateRoute';
+import PrivateRoute from '../PrivateRouter';
 import PublicRoute from '../PublicRouter';
-import AppBar from '../AppBar/AppBar';
+import AppBar from './AppBar';
 import { fetchCurrentUser } from '../../redux/auth/auth-operations';
 import authSelectors from '../../redux/auth/auth-selectors';
-import styles from '../AppBar/AppBar.module.css';
+import styles from './App.module.css';
 
 const AsyncHomeView = lazy(() =>
   import('../../views/HomeView' /* webpackChunkName: "home-page"*/),
@@ -37,13 +37,10 @@ export default function App() {
       <Suspense
         fallback={
           <Loader
-            type="ThreeDots"
+            type="Hearts"
             color="#00BFFF"
             height={80}
             width={80}
-            timeout={3000}
-            display="flex"
-            justify-content="center"
             className={styles.loader}
           />
         }

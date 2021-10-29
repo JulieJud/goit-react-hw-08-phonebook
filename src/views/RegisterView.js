@@ -42,12 +42,12 @@ export default function RegisterView() {
         <Form.Group>
           <Row>
             <Col>
-              <Form.Label>Имя</Form.Label>
+              <Form.Label>Name</Form.Label>
               <Form.Control
                 type="text"
                 name="name"
                 pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+                title="The name can only consist of letters, apostrophes, dashes and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan."
                 required
                 value={name}
                 onChange={handleChange}
@@ -55,7 +55,7 @@ export default function RegisterView() {
             </Col>
           </Row>
 
-          <Form.Label>Почта</Form.Label>
+          <Form.Label>Mail</Form.Label>
           <Row>
             <Col>
               <Form.Control
@@ -68,7 +68,7 @@ export default function RegisterView() {
             </Col>
           </Row>
 
-          <Form.Label>Пароль</Form.Label>
+          <Form.Label>Password</Form.Label>
           <Row>
             <Col>
               <Form.Control
@@ -78,14 +78,14 @@ export default function RegisterView() {
                 value={password}
                 onChange={handleChange}
                 pattern=".{8,}"
-                title="Пароль должен состоять минимум из 8 цифр"
+                title="Password must be at least 8 digits"
               />
             </Col>
           </Row>
         </Form.Group>
         <Row>
           <Col>
-            <Button type="submit">Зарегистрироваться</Button>
+            <Button type="submit">Registration</Button>
           </Col>
         </Row>
       </Form>

@@ -9,13 +9,13 @@ export default function UserMenu() {
 
   return (
     <Navbar>
-      <p className="greetings">Добро пожаловать, {name} </p>
+      <p className="greetings">Hi, {name},how are you today? </p>
       <button
         className="btn-logout"
         type="button"
         onClick={() => dispatch(logOut())}
       >
-        Выйти
+        Log off
       </button>
     </Navbar>
   );

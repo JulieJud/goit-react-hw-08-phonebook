@@ -14,13 +14,13 @@ const Filter = () => {
   const onBlurHandler = () => dispatch(changeFilter(''));
 
   if (contacts.length === 0) {
-    return <h2 style={{ display: 'none' }}>Поиск</h2>;
+    return <h2 style={{ display: 'none' }}>Search</h2>;
   } else {
     return (
       <Container>
         <Form>
           <Form.Group>
-            <h2>Найти контакт по имени </h2>
+            <h2>Find a contact by name </h2>
             <Form.Control
               type="text"
               value={value}

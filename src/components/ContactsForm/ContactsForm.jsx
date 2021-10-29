@@ -1,73 +1,84 @@
 import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from 'react-redux';
-import * as phonebookOperation from '../../../redux/phonebook/phonebook-operations';
-import { Form, Label, Input, Button } from './ContactsForm.styled';
+import { Form, Col, Row, Button, Container } from 'react-bootstrap';
+import * as phonebookOperation from '../../redux/phonebook/phonebook-operations';
+import { useSelector } from 'react-redux';
+import { getContacts } from '../../redux/phonebook/phonebook-selectors';
 
 export function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-
   const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
 
   const onSubmit = (name, number) =>
     dispatch(phonebookOperation.addContactAction({ name, number }));
 
-  const nameId = uuidv4();
-  const telId = uuidv4();
-
   const handleChange = e => {
     const { name, value } = e.target;
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-      case 'number':
-        setNumber(value);
-        break;
-      default:
-        return;
-    }
+    name === 'name' ? setName(value) : setNumber(value);
+  };
+
+  const checkName = name => {
+    return contacts.find(
+      contact => contact.name.toLowerCase() === name.toLowerCase(),
+    );
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    onSubmit(name, number);
-    setName('');
-    setNumber('');
+    if (checkName(name)) {
+      alert(`${name} is already in contacts`);
+    } else {
+      onSubmit(name, number);
+      setName('');
+      setNumber('');
+    }
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Label htmlFor={nameId}>
-        Name
-        <Input
-          type="text"
-          name="name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-          required
-          id={nameId}
-          value={name}
-          onChange={handleChange}
-        />
-      </Label>
-
-      <Label htmlFor={telId}>
-        Telephone
-        <Input
-          type="tel"
-          name="number"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
-          required
-          id={telId}
-          value={number}
-          onChange={handleChange}
-        />
-      </Label>
-      <Button type="submit">Add to contacts</Button>
-    </Form>
+    <Container>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group>
+          <h2>Add new contact</h2>
+          <Form.Label>Name</Form.Label>
+          <Row>
+            <Col>
+              <Form.Control
+                type="text"
+                name="name"
+                pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                title="The name can only consist of letters, apostrophes, dashes and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+                required
+                value={name}
+                onChange={handleChange}
+                placeholed="Enter name"
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Form.Label>Mobil</Form.Label>
+              <Form.Control
+                type="tel"
+                name="number"
+                pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+                title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+                required
+                value={number}
+                onChange={handleChange}
+                placeholed="Enter mobile number"
+              />
+            </Col>
+          </Row>
+        </Form.Group>
+        <Row>
+          <Col>
+            <Button type="submit">Add to contact list</Button>
+          </Col>
+        </Row>
+      </Form>
+    </Container>
   );
 }
 

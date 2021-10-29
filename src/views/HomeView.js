@@ -2,9 +2,7 @@ import React from 'react';
 
 const HomeView = () => (
   <div className="home-container">
-    <h1 className="home-title">
-      Войдите или зарегистрируйтесь, чтобы увидеть контакты
-    </h1>
+    <h1 className="home-title">Login or register to see contacts</h1>
   </div>
 );
 

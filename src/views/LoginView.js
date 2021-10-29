@@ -28,7 +28,7 @@ export default function LoginView() {
         <Form.Group>
           <Row>
             <Col>
-              <Form.Label>Почта</Form.Label>
+              <Form.Label>Mail</Form.Label>
               <Form.Control
                 type="email"
                 name="email"
@@ -39,7 +39,7 @@ export default function LoginView() {
             </Col>
           </Row>
 
-          <Form.Label>Пароль</Form.Label>
+          <Form.Label>Password</Form.Label>
           <Row>
             <Col>
               <Form.Control
@@ -53,7 +53,7 @@ export default function LoginView() {
           </Row>
           <Row>
             <Col>
-              <Button type="submit">Вход</Button>
+              <Button type="submit">Enter</Button>
             </Col>
           </Row>
         </Form.Group>
